@@ -8,7 +8,7 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/user/me';
+  private api = 'http://localhost:5000/api/user';
   public isLoggedIn = false;
   public user: undefined | User;
 
@@ -17,7 +17,50 @@ export class AuthService {
   }
 
   getCurrentUser(): Observable<User> {
-    return this.http.get<User>(this.apiUrl, { withCredentials: true });
+    return this.http.get<User>(`${this.api}/me`, { withCredentials: true });
+  }
+
+  register(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ): Observable<User> {
+    return this.http.post<User>(
+      `${this.api}/register`,
+      {
+        firstName,
+        lastName,
+        email,
+        password,
+      },
+      { withCredentials: true }
+    );
+  }
+
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(
+      `${this.api}/login`,
+      {
+        email,
+        password,
+      },
+      { withCredentials: true }
+    );
+  }
+
+  logout(): void {
+    this.http
+      .post(`${this.api}/logout`, {}, { withCredentials: true })
+      .subscribe(
+        () => {
+          this.isLoggedIn = false;
+          this.user = undefined;
+        },
+        (error) => {
+          console.error('Logout failed', error);
+        }
+      );
   }
 
   checkIsLoggedIn(): void {
