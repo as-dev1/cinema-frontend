@@ -7,3 +7,5 @@ export interface User {
   address?: string;
   favouriteGenres?: string[];
 }
+
+export type UserUpdate = Omit<User, 'password'>;

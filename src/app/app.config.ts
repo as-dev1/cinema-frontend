@@ -13,6 +13,7 @@ import {
   Mail,
   MapPinHouse,
   Phone,
+  User,
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -22,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     // specific import for lucide icons since i am using standalone components
     importProvidersFrom(
-      LucideAngularModule.pick({ Mail, Phone, MapPinHouse, Heart })
+      LucideAngularModule.pick({ Mail, Phone, MapPinHouse, Heart, User })
     ),
   ],
 };

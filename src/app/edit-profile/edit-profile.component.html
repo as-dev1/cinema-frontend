@@ -1,0 +1,102 @@
+<section
+  class="border-slate-400 border-2 rounded-lg max-w-2xl mx-auto mt-10 p-4 xl:p-10 shadow-lg"
+>
+  <h1 class="text-2xl text-center p-4 text-blue-500 border-b-2">
+    Edit user profile information
+  </h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- First name and last name group -->
+    <div class="flex flex-wrap gap-2 justify-around my-2">
+      <div>
+        <div class="flex gap-2 items-center my-2">
+          <lucide-icon name="user" [size]="18" />
+          <label for="firstName" class="font-bold">First name:</label>
+        </div>
+        <input
+          type="text"
+          name="firstName"
+          [(ngModel)]="firstName"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div>
+        <div class="flex gap-2 items-center my-2">
+          <lucide-icon name="user" [size]="18" />
+          <label for="lastName" class="font-bold">Last name:</label>
+        </div>
+        <input
+          type="text"
+          name="lastName"
+          [(ngModel)]="lastName"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+    </div>
+
+    <!-- Email and phone number group -->
+    <div class="flex flex-wrap gap-2 justify-around my-2">
+      <div>
+        <div class="flex gap-2 items-center">
+          <lucide-icon name="mail" [size]="18" />
+          <label for="email" class="font-bold">Email:</label>
+        </div>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div>
+        <div class="flex gap-2 items-center">
+          <lucide-icon name="phone" [size]="18" />
+          <label for="phoneNumber" class="font-bold">Phone number:</label>
+        </div>
+        <input
+          type="email"
+          name="phoneNumber"
+          [(ngModel)]="phoneNumber"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+    </div>
+
+    <!-- Address and favourite genres group -->
+    <div class="flex flex-wrap gap-2 justify-around my-2">
+      <div>
+        <div class="flex gap-2 items-center">
+          <lucide-icon name="map-pin-house" [size]="18" />
+          <label for="address" class="font-bold">Address:</label>
+        </div>
+        <input
+          type="text"
+          name="address"
+          [(ngModel)]="address"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div>
+        <div class="flex gap-2 items-center">
+          <lucide-icon name="heart" [size]="18" />
+          <label for="favouriteGenres" class="font-bold"
+            >Favourite genres:</label
+          >
+        </div>
+        <input
+          type="text"
+          name="favouriteGenres"
+          [(ngModel)]="favouriteGenres"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-2 my-4">
+      <button type="button" class="btn btn-outline" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+  </form>
+</section>

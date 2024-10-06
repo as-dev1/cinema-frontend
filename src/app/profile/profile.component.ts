@@ -8,7 +8,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [LucideAngularModule, RouterLink],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
 })
 export class ProfileComponent {
   firstName: string = '';
@@ -22,7 +21,6 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe((data) => {
-      console.log(data);
       this.firstName = data.firstName;
       this.lastName = data.lastName;
       this.email = data.email;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { User } from '../models/user';
+import { User, UserUpdate } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,18 @@ export class AuthService {
 
   getCurrentUser(): Observable<User> {
     return this.http.get<User>(`${this.api}/me`, { withCredentials: true });
+  }
+
+  checkIsLoggedIn(): void {
+    this.getCurrentUser().subscribe(
+      (data) => {
+        this.isLoggedIn = true;
+        this.user = data;
+      },
+      (error) => {
+        this.isLoggedIn = false;
+      }
+    );
   }
 
   register(
@@ -63,15 +75,9 @@ export class AuthService {
       );
   }
 
-  checkIsLoggedIn(): void {
-    this.getCurrentUser().subscribe(
-      (data) => {
-        this.isLoggedIn = true;
-        this.user = data;
-      },
-      (error) => {
-        this.isLoggedIn = false;
-      }
-    );
+  update(user: UserUpdate): Observable<UserUpdate> {
+    return this.http.put<UserUpdate>(`${this.api}/edit-profile`, user, {
+      withCredentials: true,
+    });
   }
 }
