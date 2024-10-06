@@ -15,7 +15,13 @@
         </li>
       </ul>
     </div>
-    <div class="flex-none ml-auto">
+    @if(!this.authService.isLoggedIn) {
+    <div class="ml-auto">
+      <a class="btn btn-ghost" routerLink="/register">Register</a>
+      <a class="btn btn-ghost" routerLink="/login">Login</a>
+    </div>
+    } @else {
+    <div class="ml-auto">
       <div class="dropdown dropdown-end">
         <a routerLink="cart">
           <div tabindex="1" role="button" class="btn btn-ghost btn-circle">
@@ -57,5 +63,6 @@
         </ul>
       </div>
     </div>
+    }
   </div>
 </nav>
