@@ -9,7 +9,6 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   registerForm = new FormGroup({
