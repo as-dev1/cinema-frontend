@@ -1,0 +1,21 @@
+<div class="card bg-base-100 w-auto shadow-xl my-2">
+  <figure>
+    <img [src]="movie.image_url" [alt]="movie.name" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title border-b-2 text-blue-500">{{ movie.name }}</h2>
+    <p><span class="font-bold">Genre:</span> {{ movie.genre }}</p>
+    <p><span class="font-bold">Duration:</span> {{ movie.duration }} minutes</p>
+    <p>
+      <span class="font-bold">Release date:</span>
+      {{ formatDate(movie.releaseDate) }}
+    </p>
+
+    <div class="card-actions justify-end md:mt-2">
+      <a routerLink="/movies/{{ movie._id }}" class="btn btn-outline"
+        >Details</a
+      >
+      <a routerLink="/projections" class="btn btn-primary">Watch</a>
+    </div>
+  </div>
+</div>

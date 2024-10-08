@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { AuthService } from '../services/auth.service';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   imports: [LucideAngularModule, RouterLink, FormsModule],
   templateUrl: './edit-profile.component.html',
 })
-export class EditProfileComponent {
+export class EditProfileComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   email: string = '';

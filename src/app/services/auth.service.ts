@@ -16,7 +16,7 @@ export class AuthService {
     this.checkIsLoggedIn();
   }
 
-  getCurrentUser(): Observable<User> {
+  public getCurrentUser(): Observable<User> {
     return this.http.get<User>(`${this.api}/me`, { withCredentials: true });
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
     );
   }
 
-  register(
+  public register(
     firstName: string,
     lastName: string,
     email: string,
@@ -50,7 +50,7 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string): Observable<User> {
+  public login(email: string, password: string): Observable<User> {
     return this.http.post<User>(
       `${this.api}/login`,
       {
@@ -61,7 +61,7 @@ export class AuthService {
     );
   }
 
-  logout(): void {
+  public logout(): void {
     this.http
       .post(`${this.api}/logout`, {}, { withCredentials: true })
       .subscribe(
@@ -75,7 +75,7 @@ export class AuthService {
       );
   }
 
-  update(user: UserUpdate): Observable<UserUpdate> {
+  public update(user: UserUpdate): Observable<UserUpdate> {
     return this.http.put<UserUpdate>(`${this.api}/edit-profile`, user, {
       withCredentials: true,
     });
