@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { Movie } from '../../models/movie';
 
@@ -12,7 +12,7 @@ import { Movie } from '../../models/movie';
 export class MovieCardComponent {
   @Input() movie!: Movie;
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   formatDate(date: Date) {
     return new Date(date).toLocaleDateString();

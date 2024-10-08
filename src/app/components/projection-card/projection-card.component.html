@@ -1,0 +1,30 @@
+<div class="card bg-base-100 w-auto shadow-xl my-2">
+  <figure>
+    <img [src]="projection.movie.image_url" [alt]="projection.movie.name" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title border-b-2 text-blue-500">
+      {{ projection.movie.name }}
+    </h2>
+    <p><span class="font-bold">Genre:</span> {{ projection.movie.genre }}</p>
+    <p>
+      <span class="font-bold">Duration:</span>
+      {{ projection.movie.duration }} minutes
+    </p>
+    <p>
+      <span class="font-bold">Starts:</span>
+      {{ formatDate(projection.starting_at) }}
+    </p>
+    <p>
+      <span class="font-bold">Price:</span>
+      {{ projection.price }} $
+    </p>
+
+    <div class="card-actions justify-end md:mt-2">
+      <a routerLink="/movies/{{ projection.movie._id }}" class="btn btn-outline"
+        >Details</a
+      >
+      <a routerLink="/cart" class="btn btn-primary">Reserve</a>
+    </div>
+  </div>
+</div>
