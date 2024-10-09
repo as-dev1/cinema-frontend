@@ -7,6 +7,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MovieComponent } from './movie/movie.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { ProjectionComponent } from './projection/projection.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,10 @@ export const routes: Routes = [
   {
     path: 'projections',
     component: ProjectionComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
   {
     path: '**',

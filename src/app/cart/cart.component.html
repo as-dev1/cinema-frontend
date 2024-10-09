@@ -1,0 +1,44 @@
+<section>
+  <h1 class="text-2xl text-center p-4">Your reservations</h1>
+
+  @if(reservations.length > 0) { @for (reservation of reservations; track
+  reservation._id) {
+  <div class="flex gap-4 m-4 max-w-xl mx-auto">
+    <img
+      [src]="reservation.projection.movie.image_url"
+      alt="movie-image"
+      class="max-w-52"
+    />
+    <div class="flex flex-col gap-2">
+      <p
+        class="font-bold md:font-extrabold text-xl md:text-3xl text-blue-500 mb-6"
+      >
+        {{ reservation.projection.movie.name }}
+      </p>
+      <p>
+        <span class="font-bold">Genre:</span>
+        {{ reservation.projection.movie.genre }}
+      </p>
+      <p>
+        <span class="font-bold">Duration:</span>
+        {{ reservation.projection.movie.duration }} minutes
+      </p>
+      <p>
+        <span class="font-bold">Starts:</span>
+        {{ formatDateAndTime(reservation.projection.starting_at) }}
+      </p>
+      <p>
+        <span class="font-bold">Price:</span>
+        {{ reservation.projection.price }} $
+      </p>
+
+      <div class="flex gap-4 my-4">
+        <button class="btn btn-outline">Cancel</button>
+        <button class="btn btn-primary">Mark as watched</button>
+      </div>
+    </div>
+  </div>
+  } } @else {
+  <p class="text-center font-bold text-xl">No reservations found</p>
+  }
+</section>
