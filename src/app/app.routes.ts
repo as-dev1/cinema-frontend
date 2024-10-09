@@ -41,4 +41,8 @@ export const routes: Routes = [
     path: 'projections',
     component: ProjectionComponent,
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

@@ -1,1 +1,120 @@
-<p>movie-detail works!</p>
+<section class="max-w-4xl mx-auto">
+  <!-- Movie details section -->
+  <section
+    class="flex flex-col items-center md:flex-row gap-6 my-4 p-4 shadow-lg"
+  >
+    <img [src]="movie?.image_url" alt="movie?.name" class="max-w-72" />
+    <div class="p-4">
+      <h1
+        class="text-2xl text-center p-2 md:text-3xl lg:text-4xl font-extrabold mb-4 leading-tight border-b-2"
+      >
+        {{ movie?.name }}
+      </h1>
+      <p class="text-md md:text-lg">
+        <span class="font-semibold text-blue-500">Genre:</span>
+        {{ movie?.genre }}
+      </p>
+      <p class="text-md md:text-lg">
+        <span class="font-semibold text-blue-500">Duration:</span>
+        {{ movie?.duration }} minutes
+      </p>
+      <p class="text-md md:text-lg">
+        <span class="font-semibold text-blue-500">Release date:</span>
+        {{ formatDate(movie?.releaseDate) }}
+      </p>
+      <p class="text-md md:text-lg">
+        <span class="font-semibold text-blue-500">Producer:</span>
+        {{ movie?.producer }}
+      </p>
+      <p class="text-md md:text-lg">
+        <span class="font-semibold text-blue-500">Actors:</span>
+        {{ movie?.actors }}
+      </p>
+      <p class="text-md md:text-lg">
+        <span class="font-semibold text-blue-500">Description:</span>
+        {{ movie?.description }}
+      </p>
+    </div>
+  </section>
+
+  <!-- Comments section -->
+  <section>
+    <h1
+      class="text-2xl text-center p-2 md:text-3xl lg:text-4xl font-extrabold mb-4 leading-tight"
+    >
+      Reviews
+    </h1>
+
+    <!-- Modal for posting comment -->
+    <!-- Open the modal using ID.showModal() method -->
+    <button class="btn btn-primary" onclick="my_modal_1.showModal()">
+      Post review
+    </button>
+    <dialog id="my_modal_1" class="modal">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold text-center">Review</h3>
+        <p class="py-4">Press ESC key or click the button below to close</p>
+        <p>Rating</p>
+        <input
+          type="range"
+          min="1"
+          max="5"
+          [(ngModel)]="rating"
+          class="range range-primary"
+        />
+        <p>Comment</p>
+        <textarea
+          class="textarea textarea-bordered w-full"
+          placeholder="Comment"
+          [(ngModel)]="comment"
+        ></textarea>
+
+        <div class="modal-action">
+          <form method="dialog">
+            <div class="flex gap-4">
+              <button class="btn">Close</button>
+              <button class="btn btn-primary" (click)="onSubmit()">
+                Create
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <div>
+      @if(reviews.length > 0) { @for(review of reviews; track review._id) {
+      <div class="shadow-lg p-6">
+        <div class="flex gap-4">
+          <div class="avatar">
+            <div class="size-12 md:size-14 rounded-full">
+              <img src="/images/avatar.png" />
+            </div>
+          </div>
+          <div>
+            <p class="text-md font-bold md:text-xl">
+              {{ review.user.firstName }} {{ review.user.lastName }}
+            </p>
+            <p>{{ formatDate(review.createdAt) }}</p>
+          </div>
+        </div>
+        <!-- dinamicly display rating based on user rating from 1 to 5 -->
+        <!-- [checked] checks if i+1 matches user rating and then display rating star -->
+        <div class="rating py-2">
+          <input
+            *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+            type="radio"
+            class="mask mask-star"
+            [checked]="i + 1 === review.rating"
+            disabled
+          />
+        </div>
+
+        <p><span class="font-bold">Comment: </span> {{ review.comment }}</p>
+      </div>
+      } } @else {
+      <h1 class="text-xl">No reviews 😞</h1>
+      }
+    </div>
+  </section>
+</section>
