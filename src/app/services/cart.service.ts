@@ -25,8 +25,18 @@ export class CartService {
     });
   }
 
-  public markReservationAsViewed(cartId: string): Observable<Cart> {
-    return this.http.put<Cart>(
+  public cancelReservation(cartId: string): Observable<{}> {
+    return this.http.put<{}>(
+      `${this.api}/cancel/${cartId}`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  public markReservationAsWatched(cartId: string): Observable<{}> {
+    return this.http.put<{}>(
       `${this.api}/viewed/${cartId}`,
       {},
       {
