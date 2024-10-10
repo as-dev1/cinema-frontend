@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 import { MovieService } from '../services/movie.service';
 import { ReviewService } from '../services/review.service';
@@ -33,7 +34,8 @@ export class MovieDetailComponent implements OnInit {
     private movieService: MovieService,
     private reviewService: ReviewService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   // if user enter wrong movie id mannually in url redirect to /movies
@@ -72,10 +74,21 @@ export class MovieDetailComponent implements OnInit {
         comment: this.comment,
       };
 
-      this.reviewService.createReview(newReview).subscribe(() => {
-        this.getReviews();
-        this.rating = 0;
-        this.comment = '';
+      this.reviewService.createReview(newReview).subscribe({
+        next: () => {
+          this.getReviews();
+          this.rating = 0;
+          this.comment = '';
+        },
+        error: (error) => {
+          this.toastr.error(
+            error.error.message || 'Something went wrong',
+            undefined,
+            {
+              timeOut: 2000,
+            }
+          );
+        },
       });
     } else {
       this.router.navigateByUrl('login');
