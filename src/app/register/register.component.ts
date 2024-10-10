@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from '../services/auth.service';
 
@@ -18,7 +19,11 @@ export class RegisterComponent {
     password: new FormControl(''),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   onSubmit() {
     this.authService
@@ -28,10 +33,19 @@ export class RegisterComponent {
         this.registerForm.value.email!,
         this.registerForm.value.password!
       )
-      .subscribe(() => {
-        this.router.navigateByUrl('/').then(() => {
-          window.location.reload();
-        });
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/').then(() => {
+            window.location.reload();
+          });
+        },
+        error: (error) => {
+          this.toastr.error(
+            error.error.message || 'Something went wrong',
+            undefined,
+            { timeOut: 2000 }
+          );
+        },
       });
   }
 }

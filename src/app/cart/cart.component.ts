@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { CartService } from '../services/cart.service';
 import { Reservation } from '../models/cart';
@@ -14,7 +15,11 @@ export class CartComponent implements OnInit {
   reservations: Reservation[] = [];
   totalPrice: number = 0;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   getReservations() {
     return this.cartService
@@ -44,7 +49,15 @@ export class CartComponent implements OnInit {
         this.getReservations();
         this.router.navigateByUrl('/reservation');
       },
-      error: (error) => console.log(error),
+      error: (error) => {
+        this.toastr.error(
+          error.error.message || 'Something went wrong',
+          undefined,
+          {
+            timeOut: 2000,
+          }
+        );
+      },
     });
   }
 

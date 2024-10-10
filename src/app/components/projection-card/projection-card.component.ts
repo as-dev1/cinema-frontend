@@ -27,14 +27,11 @@ export class ProjectionCardComponent {
           user: this.authService.user._id!,
           projection: this.projection._id,
         })
-        .subscribe({
-          next: () => {
-            this.router.navigateByUrl('/cart');
-          },
-          error: () => {
-            this.router.navigateByUrl('/login');
-          },
+        .subscribe(() => {
+          this.router.navigateByUrl('/cart');
         });
+    } else {
+      this.router.navigateByUrl('/login');
     }
   }
 
