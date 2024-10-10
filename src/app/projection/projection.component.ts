@@ -11,7 +11,6 @@ import { ProjectionCardComponent } from '../components/projection-card/projectio
   standalone: true,
   imports: [FormsModule, LucideAngularModule, ProjectionCardComponent],
   templateUrl: './projection.component.html',
-  styleUrl: './projection.component.css',
 })
 export class ProjectionComponent implements OnInit {
   projections: Projection[] = [];
