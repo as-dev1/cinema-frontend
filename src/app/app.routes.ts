@@ -8,6 +8,7 @@ import { MovieComponent } from './movie/movie.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { ProjectionComponent } from './projection/projection.component';
 import { CartComponent } from './cart/cart.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 export const routes: Routes = [
   {
@@ -45,6 +46,10 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'reservation',
+    component: ReservationComponent,
   },
   {
     path: '**',

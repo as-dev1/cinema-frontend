@@ -1,5 +1,5 @@
 <section>
-  <h1 class="text-4xl text-center p-4 text-blue-500">Your reservations</h1>
+  <h1 class="text-4xl text-center p-4 text-blue-500">Your cart</h1>
   <div class="max-w-xl mx-auto">
     @if (reservations.length > 0) { @for (reservation of reservations; track
     reservation._id) {
@@ -30,6 +30,10 @@
         <p>
           <span class="font-bold">Price:</span>
           {{ reservation.projection.price }} $
+        </p>
+        <p>
+          <span class="font-bold">Status: </span>
+          <span class="text-blue-500">{{ reservation.status }}</span>
         </p>
 
         <div class="flex gap-4 my-4">

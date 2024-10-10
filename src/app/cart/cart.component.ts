@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CartService } from '../services/cart.service';
-import { AuthService } from '../services/auth.service';
 import { Reservation } from '../models/cart';
 
 @Component({
@@ -15,10 +15,7 @@ export class CartComponent implements OnInit {
   reservations: Reservation[] = [];
   totalPrice: number = 0;
 
-  constructor(
-    private cartService: CartService,
-    private authService: AuthService
-  ) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   getReservations() {
     return this.cartService
@@ -31,17 +28,25 @@ export class CartComponent implements OnInit {
 
   cancelReservation(cartId: string) {
     if (confirm('Do you want to cancel this reservation?')) {
-      return this.cartService
-        .cancelReservation(cartId)
-        .subscribe(() => this.getReservations());
+      return this.cartService.cancelReservation(cartId).subscribe({
+        next: () => {
+          this.getReservations();
+          this.router.navigateByUrl('/reservation');
+        },
+        error: (error) => console.log(error),
+      });
     }
     return null;
   }
 
   markReservationAsWatched(cartId: string) {
-    return this.cartService
-      .markReservationAsWatched(cartId)
-      .subscribe(() => this.getReservations());
+    return this.cartService.markReservationAsWatched(cartId).subscribe({
+      next: () => {
+        this.getReservations();
+        this.router.navigateByUrl('/reservation');
+      },
+      error: (error) => console.log(error),
+    });
   }
 
   calculateTotalPrice() {

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 export class CartService {
   private api = 'http://localhost:5000/api/cart';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   public createReservation(reservation: Cart): Observable<Cart> {
     return this.http.post<Cart>(this.api, reservation, {
@@ -21,6 +21,12 @@ export class CartService {
 
   public getReservationsForUser(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(this.api, {
+      withCredentials: true,
+    });
+  }
+
+  public getForReservationRoute(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(`${this.api}/reservation`, {
       withCredentials: true,
     });
   }
