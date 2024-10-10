@@ -1,8 +1,13 @@
 <section class="m-4">
-  <!-- PLACEHOLDER FOR NOW  -->
   <div class="flex items-center gap-2 my-4">
     <label class="input input-bordered flex items-center gap-2">
-      <input type="text" class="grow" placeholder="Search" />
+      <input
+        type="text"
+        class="grow"
+        placeholder="Search"
+        [(ngModel)]="searchInput"
+        (input)="filterProjections()"
+      />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
@@ -19,10 +24,15 @@
     <div class="drawer z-10">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <!-- Page content here -->
         <label for="my-drawer" class="btn btn-primary drawer-button"
           >More Filters</label
         >
+        @if(this.searchInput || this.selectedGenre || this.selectedDuration ||
+        this.selectedPrice) {
+        <button class="btn btn-outline ml-2" (click)="clearFilter()">
+          Remove Filters
+        </button>
+        }
       </div>
       <div class="drawer-side">
         <label
@@ -31,19 +41,55 @@
           class="drawer-overlay"
         ></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          <!-- Sidebar content here -->
-          <li><a>Sidebar Item 1</a></li>
-          <li><a>Sidebar Item 2</a></li>
+          <select
+            class="select select-primary w-full max-w-xs"
+            [(ngModel)]="selectedGenre"
+            (click)="filterProjections()"
+          >
+            <option value="" selected>Filter by Genre</option>
+            <option value="action">Action</option>
+            <option value="drama">Drama</option>
+            <option value="comedy">Comedy</option>
+            <option value="horror">Horror</option>
+          </select>
+          <select
+            class="select select-primary w-full max-w-xs mt-4"
+            [(ngModel)]="selectedDuration"
+            (change)="filterProjections()"
+          >
+            <option value="" selected>Duration filter</option>
+            <option value="short">Less than 100 mins</option>
+            <option value="medium">100-120 mins</option>
+            <option value="long">More than 120 mins</option>
+          </select>
+
+          <select
+            class="select select-primary w-full max-w-xs mt-4"
+            [(ngModel)]="selectedPrice"
+            (change)="filterProjections()"
+          >
+            <option value="" selected>Price filter</option>
+            <option value="cheap">Less than 5$</option>
+            <option value="medium">Less than 10$</option>
+            <option value="expensive">More than 10$</option>
+          </select>
+
+          @if(this.searchInput || this.selectedGenre || this.selectedDuration ||
+          this.selectedPrice) {
+          <button class="btn btn-outline mt-4" (click)="clearFilter()">
+            Remove Filters
+          </button>
+          }
         </ul>
       </div>
     </div>
   </div>
 
-  @if (projections.length > 0) {
+  @if (filteredProjections.length > 0) {
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
   >
-    @for (projection of projections; track projection._id) {
+    @for (projection of filteredProjections; track projection._id) {
     <app-projection-card [projection]="projection" />
     }
   </div>
