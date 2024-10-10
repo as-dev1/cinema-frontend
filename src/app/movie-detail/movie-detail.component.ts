@@ -14,7 +14,6 @@ import { Movie } from '../models/movie';
   standalone: true,
   imports: [NgFor, FormsModule],
   templateUrl: './movie-detail.component.html',
-  styleUrl: './movie-detail.component.css',
 })
 export class MovieDetailComponent implements OnInit {
   movieId: string | undefined;

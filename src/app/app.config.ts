@@ -15,6 +15,7 @@ import {
   MapPinHouse,
   Phone,
   User,
+  House,
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -31,6 +32,7 @@ export const appConfig: ApplicationConfig = {
         Heart,
         User,
         Loader,
+        House,
       })
     ),
   ],

@@ -11,7 +11,6 @@ import { MovieCardComponent } from '../components/movie-card/movie-card.componen
   standalone: true,
   imports: [FormsModule, MovieCardComponent, LucideAngularModule],
   templateUrl: './movie.component.html',
-  styleUrl: './movie.component.css',
 })
 export class MovieComponent implements OnInit {
   movies: Movie[] = [];

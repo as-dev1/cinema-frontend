@@ -1,15 +1,22 @@
 <nav class="bg-base-300">
   <div class="navbar max-w-7xl mx-auto">
     <div class="flex justify-between">
-      <a class="btn btn-ghost text-xl" routerLink="/">Cinema World</a>
+      <button class="btn md:hidden btn-ghost" routerLink="/">
+        <lucide-icon name="house" />
+      </button>
+      <button class="btn hidden md:inline btn-ghost text-xl" routerLink="/">
+        Cinema World
+      </button>
       <ul tabindex="0" class="flex gap-2">
         <li>
-          <a class="p-2 rounded-lg hover:bg-base-100" routerLink="/movies"
+          <a class="md:p-2 rounded-lg hover:bg-base-100" routerLink="/movies"
             >Movies</a
           >
         </li>
         <li>
-          <a class="p-2 rounded-lg hover:bg-base-100" routerLink="/projections"
+          <a
+            class="md:p-2 rounded-lg hover:bg-base-100"
+            routerLink="/projections"
             >Projections</a
           >
         </li>
