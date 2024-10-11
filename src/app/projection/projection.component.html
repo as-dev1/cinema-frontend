@@ -4,8 +4,29 @@
       <input
         type="text"
         class="grow"
-        placeholder="Search"
-        [(ngModel)]="searchInput"
+        placeholder="Search by name"
+        [(ngModel)]="nameInput"
+        (input)="filterProjections()"
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        class="h-4 w-4 opacity-70"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </label>
+    <label class="input input-bordered flex items-center gap-2">
+      <input
+        type="text"
+        class="grow"
+        placeholder="Search by description"
+        [(ngModel)]="descriptionInput"
         (input)="filterProjections()"
       />
       <svg
@@ -27,7 +48,8 @@
         <label for="my-drawer" class="btn btn-primary drawer-button"
           >More Filters</label
         >
-        @if(this.searchInput || this.selectedGenre || this.selectedDuration ||
+        @if(this.nameInput || this.descriptionInput || this.selectedGenre ||
+        this. selectedProducer || this.selectedActor || this.selectedDuration ||
         this.selectedPrice) {
         <button class="btn btn-outline ml-2" (click)="clearFilter()">
           Remove Filters
@@ -65,6 +87,40 @@
 
           <select
             class="select select-primary w-full max-w-xs mt-4"
+            [(ngModel)]="selectedProducer"
+            (click)="filterProjections()"
+          >
+            <option value="" selected>Producer filter</option>
+            <option value="Shawn Levy">Shawn Levy</option>
+            <option value="Chris Renaud">Chirs Renaud</option>
+            <option value="James Watkins">James Watkins</option>
+            <option value="Rupert Sanders">Rupert Sanders</option>
+            <option value="Michael Su">Michael Su</option>
+            <option value="Kim Tae-gon">Kim Tae-gon</option>
+            <option value="Chris Sanders">Chris Sanders</option>
+            <option value="Todd Phillips">Todd Phillips</option>
+            <option value="Adil El Arbi">Adil El Arbi</option>
+          </select>
+
+          <select
+            class="select select-primary w-full max-w-xs mt-4"
+            [(ngModel)]="selectedActor"
+            (click)="filterProjections()"
+          >
+            <option value="" selected>Actor filter</option>
+            <option value="Brad Pitt">Brad Pitt</option>
+            <option value="Robert De Niro">Robert De Niro</option>
+            <option value="Ryan Reynolds">Ryan Reynolds</option>
+            <option value="Steve Carell">Steve Carell</option>
+            <option value="James McAvoy">James McAvoy</option>
+            <option value="Danny Huston">Danny Huston</option>
+            <option value="Tom Arnold">Tom Arnold</option>
+            <option value="Lee Sun-kyun">Lee Sun-kyun</option>
+            <option value="Pedro Pascal">Pedro Pascal</option>
+          </select>
+
+          <select
+            class="select select-primary w-full max-w-xs mt-4"
             [(ngModel)]="selectedPrice"
             (change)="filterProjections()"
           >
@@ -74,8 +130,9 @@
             <option value="expensive">More than 10$</option>
           </select>
 
-          @if(this.searchInput || this.selectedGenre || this.selectedDuration ||
-          this.selectedPrice) {
+          @if(this.nameInput || this.descriptionInput || this.selectedGenre ||
+          this.selectedProducer || this.selectedActor || this.selectedDuration
+          || this.selectedPrice) {
           <button class="btn btn-outline mt-4" (click)="clearFilter()">
             Remove Filters
           </button>

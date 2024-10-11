@@ -16,9 +16,12 @@ export class ProjectionComponent implements OnInit {
   projections: Projection[] = [];
   filteredProjections: Projection[] = [];
 
-  searchInput: string = '';
+  nameInput: string = '';
+  descriptionInput: string = '';
   selectedGenre: string = '';
   selectedDuration: string = '';
+  selectedProducer: string = '';
+  selectedActor: string = '';
   selectedPrice: string = '';
 
   constructor(private projectionService: ProjectionService) {}
@@ -35,16 +38,27 @@ export class ProjectionComponent implements OnInit {
   }
 
   filterProjections() {
-    const searchInputLowerCase = this.searchInput.toLowerCase();
+    const nameInputLowerCase = this.nameInput.toLowerCase();
+    const descriptionInputLowerCase = this.descriptionInput.toLowerCase();
 
     this.filteredProjections = this.projections.filter(
       (projection) =>
-        (projection.movie.name.toLowerCase().includes(searchInputLowerCase) ||
-          projection.movie.genre
-            .toLowerCase()
-            .includes(searchInputLowerCase)) &&
+        projection.movie.name.toLowerCase().includes(nameInputLowerCase) &&
+        (descriptionInputLowerCase
+          ? projection.movie.description
+              .toLowerCase()
+              .includes(descriptionInputLowerCase)
+          : true) &&
         (this.selectedGenre
           ? projection.movie.genre === this.selectedGenre
+          : true) &&
+        (this.selectedProducer
+          ? projection.movie.producer === this.selectedProducer
+          : true) &&
+        (this.selectedActor
+          ? projection.movie.actors.some((actor) =>
+              actor.includes(this.selectedActor)
+            )
           : true) &&
         this.filterByDuration(projection.movie.duration) &&
         this.filterByPrice(projection.price)
@@ -74,8 +88,11 @@ export class ProjectionComponent implements OnInit {
   }
 
   clearFilter() {
-    this.searchInput = '';
+    this.nameInput = '';
+    this.descriptionInput = '';
     this.selectedGenre = '';
+    this.selectedProducer = '';
+    this.selectedActor = '';
     this.selectedDuration = '';
     this.selectedPrice = '';
     this.filterProjections();

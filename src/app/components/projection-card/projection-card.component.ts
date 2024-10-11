@@ -38,4 +38,8 @@ export class ProjectionCardComponent {
   formatDate(date: Date) {
     return new Date(date).toLocaleString();
   }
+
+  shortDescription(description: string) {
+    return description.substring(0, 90) + '...';
+  }
 }
