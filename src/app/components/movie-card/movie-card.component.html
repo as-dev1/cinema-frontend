@@ -7,6 +7,10 @@
     <p><span class="font-bold">Genre:</span> {{ movie.genre }}</p>
     <p><span class="font-bold">Duration:</span> {{ movie.duration }} minutes</p>
     <p>
+      <span class="font-bold">Description:</span>
+      {{ shortDescription(movie.description) }}
+    </p>
+    <p>
       <span class="font-bold">Release date:</span>
       {{ formatDate(movie.releaseDate) }}
     </p>

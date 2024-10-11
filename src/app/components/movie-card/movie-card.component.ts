@@ -17,4 +17,8 @@ export class MovieCardComponent {
   formatDate(date: Date) {
     return new Date(date).toLocaleDateString();
   }
+
+  shortDescription(description: string) {
+    return description.substring(0, 90) + '...';
+  }
 }

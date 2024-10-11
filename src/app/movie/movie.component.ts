@@ -16,9 +16,12 @@ export class MovieComponent implements OnInit {
   movies: Movie[] = [];
   filteredMovies: Movie[] = [];
 
-  searchInput: string = '';
+  nameInput: string = '';
+  descriptionInput: string = '';
   selectedGenre: string = '';
   selectedDuration: string = '';
+  selectedProducer: string = '';
+  selectedActor: string = '';
 
   constructor(private movieService: MovieService) {}
 
@@ -34,16 +37,24 @@ export class MovieComponent implements OnInit {
   }
 
   filterMovies() {
-    const searchInputLowerCase = this.searchInput.toLowerCase();
+    const nameInputLowerCase = this.nameInput.toLowerCase().trim();
+    const descriptionInputLowerCase = this.descriptionInput
+      .toLowerCase()
+      .trim();
 
     this.filteredMovies = this.movies.filter(
       (movie) =>
-        (movie.name.toLowerCase().includes(searchInputLowerCase) ||
-          movie.genre.toLowerCase().includes(searchInputLowerCase) ||
-          movie.actors.some((actor) =>
-            actor.toLowerCase().includes(searchInputLowerCase)
-          )) &&
+        movie.name.toLowerCase().includes(nameInputLowerCase) &&
+        (descriptionInputLowerCase
+          ? movie.description.toLowerCase().includes(descriptionInputLowerCase)
+          : true) &&
         (this.selectedGenre ? movie.genre === this.selectedGenre : true) &&
+        (this.selectedProducer
+          ? movie.producer === this.selectedProducer
+          : true) &&
+        (this.selectedActor
+          ? movie.actors.some((actor) => actor.includes(this.selectedActor))
+          : true) &&
         this.filterByDuration(movie.duration)
     );
   }
@@ -60,9 +71,11 @@ export class MovieComponent implements OnInit {
   }
 
   clearFilter() {
-    this.searchInput = '';
+    this.nameInput = '';
     this.selectedGenre = '';
     this.selectedDuration = '';
+    this.selectedProducer = '';
+    this.selectedActor = '';
     this.filterMovies();
   }
 }

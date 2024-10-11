@@ -12,6 +12,10 @@
       {{ projection.movie.duration }} minutes
     </p>
     <p>
+      <span class="font-bold">Description:</span>
+      {{ shortDescription(projection.movie.description) }}
+    </p>
+    <p>
       <span class="font-bold">Starts:</span>
       {{ formatDate(projection.starting_at) }}
     </p>
