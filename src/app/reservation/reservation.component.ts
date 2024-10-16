@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 
-import { Reservation } from '../models/cart';
-import { CartService } from '../services/cart.service';
-import { AuthService } from '../services/auth.service';
-import { CreateReview } from '../models/review';
-import { ReviewService } from '../services/review.service';
+import { Reservation } from '../../models/cart';
+import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
+import { CreateReview } from '../../models/review';
+import { ReviewService } from '../../services/review.service';
+import { formatDateAndTime } from '../../lib/formatTime';
 
 @Component({
   selector: 'app-reservation',
@@ -17,6 +18,7 @@ import { ReviewService } from '../services/review.service';
 })
 export class ReservationComponent implements OnInit {
   reservations: Reservation[] = [];
+  formatDateAndTime = formatDateAndTime;
 
   rating: number = 0;
   comment: string = '';
@@ -75,9 +77,5 @@ export class ReservationComponent implements OnInit {
 
   navigateToMovie(reservation: Reservation) {
     this.router.navigateByUrl(`/movies/${reservation.projection.movie._id}`);
-  }
-
-  formatDateAndTime(date: Date) {
-    return new Date(date).toLocaleString();
   }
 }

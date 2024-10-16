@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { CartService } from '../services/cart.service';
-import { Reservation } from '../models/cart';
+import { CartService } from '../../services/cart.service';
+import { Reservation } from '../../models/cart';
+import { formatDateAndTime } from '../../lib/formatTime';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,7 @@ import { Reservation } from '../models/cart';
 export class CartComponent implements OnInit {
   reservations: Reservation[] = [];
   totalPrice: number = 0;
+  formatDateAndTime = formatDateAndTime;
 
   constructor(
     private cartService: CartService,
@@ -28,6 +30,10 @@ export class CartComponent implements OnInit {
         this.reservations = reservations;
         this.calculateTotalPrice();
       });
+  }
+
+  ngOnInit() {
+    this.getReservations();
   }
 
   cancelReservation(cartId: string) {
@@ -66,13 +72,5 @@ export class CartComponent implements OnInit {
       (sum, reservation) => sum + reservation.projection.price,
       0
     );
-  }
-
-  ngOnInit() {
-    this.getReservations();
-  }
-
-  formatDateAndTime(date: Date) {
-    return new Date(date).toLocaleString();
   }
 }

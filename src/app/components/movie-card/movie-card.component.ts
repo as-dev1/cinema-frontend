@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { Movie } from '../../models/movie';
+import { Movie } from '../../../models/movie';
+import { formatDate } from '../../../lib/formatTime';
 
 @Component({
   selector: 'app-movie-card',
@@ -11,12 +12,9 @@ import { Movie } from '../../models/movie';
 })
 export class MovieCardComponent {
   @Input() movie!: Movie;
+  formatDate = formatDate;
 
   constructor() {}
-
-  formatDate(date: Date) {
-    return new Date(date).toLocaleDateString();
-  }
 
   shortDescription(description: string) {
     return description.substring(0, 90) + '...';

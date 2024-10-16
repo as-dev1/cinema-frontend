@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 
-import { MovieService } from '../services/movie.service';
-import { Movie } from '../models/movie';
+import { MovieService } from '../../services/movie.service';
+import { Movie } from '../../models/movie';
 import { MovieCardComponent } from '../components/movie-card/movie-card.component';
 
 @Component({
