@@ -1,6 +1,6 @@
 <section class="m-4">
-  <div class="flex items-center gap-2 my-4">
-    <label class="input input-bordered flex items-center gap-2">
+  <div class="flex flex-wrap items-center gap-2 my-4">
+    <label class="input input-bordered flex items-center gap-2 grow lg:grow-0">
       <input
         type="text"
         class="grow"
@@ -21,7 +21,8 @@
         />
       </svg>
     </label>
-    <label class="input input-bordered flex items-center gap-2">
+
+    <label class="input input-bordered flex items-center gap-2 grow lg:grow-0">
       <input
         type="text"
         class="grow"
@@ -42,19 +43,28 @@
         />
       </svg>
     </label>
+
     <div class="drawer z-10">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <label for="my-drawer" class="btn btn-primary drawer-button"
-          >More Filters</label
+        <label
+          for="my-drawer"
+          class="btn btn-primary mr-2 drawer-button sm:w-auto w-full"
         >
+          More Filters
+        </label>
+
         @if(this.nameInput || this.descriptionInput || this.selectedGenre ||
         this.selectedDuration || this.selectedProducer || this.selectedActor) {
-        <button class="btn btn-outline ml-2" (click)="clearFilter()">
+        <button
+          class="btn btn-outline sm:w-auto w-full mt-2 sm:mt-0"
+          (click)="clearFilter()"
+        >
           Remove Filters
         </button>
         }
       </div>
+
       <div class="drawer-side">
         <label
           for="my-drawer"
@@ -73,6 +83,7 @@
             <option value="comedy">Comedy</option>
             <option value="horror">Horror</option>
           </select>
+
           <select
             class="select select-primary w-full max-w-xs mt-4"
             [(ngModel)]="selectedDuration"
@@ -83,6 +94,7 @@
             <option value="medium">100-120 mins</option>
             <option value="long">More than 120 mins</option>
           </select>
+
           <select
             class="select select-primary w-full max-w-xs mt-4"
             [(ngModel)]="selectedProducer"
@@ -120,7 +132,7 @@
           @if(this.nameInput || this.descriptionInput || this.selectedGenre ||
           this.selectedDuration || this.selectedProducer || this.selectedActor)
           {
-          <button class="btn btn-outline mt-4" (click)="clearFilter()">
+          <button class="btn btn-outline mt-4 w-full" (click)="clearFilter()">
             Remove Filters
           </button>
           }

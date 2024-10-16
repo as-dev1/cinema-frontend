@@ -1,6 +1,6 @@
 <section class="m-4">
-  <div class="flex items-center gap-2 my-4">
-    <label class="input input-bordered flex items-center gap-2">
+  <div class="flex flex-wrap items-center gap-2 my-4">
+    <label class="input input-bordered flex items-center gap-2 grow lg:grow-0">
       <input
         type="text"
         class="grow"
@@ -21,7 +21,8 @@
         />
       </svg>
     </label>
-    <label class="input input-bordered flex items-center gap-2">
+
+    <label class="input input-bordered flex items-center gap-2 grow lg:grow-0">
       <input
         type="text"
         class="grow"
@@ -42,20 +43,29 @@
         />
       </svg>
     </label>
+
     <div class="drawer z-10">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <label for="my-drawer" class="btn btn-primary drawer-button"
-          >More Filters</label
+        <label
+          for="my-drawer"
+          class="btn btn-primary mr-2 drawer-button sm:w-auto w-full"
         >
-        @if(this.nameInput || this.descriptionInput || this.selectedGenre ||
-        this. selectedProducer || this.selectedActor || this.selectedDuration ||
+          More Filters
+        </label>
+
+        @if (this.nameInput || this.descriptionInput || this.selectedGenre ||
+        this.selectedProducer || this.selectedActor || this.selectedDuration ||
         this.selectedPrice) {
-        <button class="btn btn-outline ml-2" (click)="clearFilter()">
+        <button
+          class="btn btn-outline sm:w-auto w-full mt-2 sm:mt-0"
+          (click)="clearFilter()"
+        >
           Remove Filters
         </button>
         }
       </div>
+
       <div class="drawer-side">
         <label
           for="my-drawer"
@@ -74,6 +84,7 @@
             <option value="comedy">Comedy</option>
             <option value="horror">Horror</option>
           </select>
+
           <select
             class="select select-primary w-full max-w-xs mt-4"
             [(ngModel)]="selectedDuration"
@@ -92,7 +103,7 @@
           >
             <option value="" selected>Producer filter</option>
             <option value="Shawn Levy">Shawn Levy</option>
-            <option value="Chris Renaud">Chirs Renaud</option>
+            <option value="Chris Renaud">Chris Renaud</option>
             <option value="James Watkins">James Watkins</option>
             <option value="Rupert Sanders">Rupert Sanders</option>
             <option value="Michael Su">Michael Su</option>
@@ -130,10 +141,10 @@
             <option value="expensive">More than 10$</option>
           </select>
 
-          @if(this.nameInput || this.descriptionInput || this.selectedGenre ||
+          @if (this.nameInput || this.descriptionInput || this.selectedGenre ||
           this.selectedProducer || this.selectedActor || this.selectedDuration
           || this.selectedPrice) {
-          <button class="btn btn-outline mt-4" (click)="clearFilter()">
+          <button class="btn btn-outline mt-4 w-full" (click)="clearFilter()">
             Remove Filters
           </button>
           }

@@ -3,11 +3,11 @@
   <div class="max-w-xl mx-auto">
     @if (reservations.length > 0) { @for (reservation of reservations; track
     reservation._id) {
-    <div class="flex gap-4 m-4 border-b-2">
+    <div class="flex flex-col md:flex-row gap-4 m-4 border-b-2">
       <img
         [src]="reservation.projection.movie.image_url"
         alt="movie-image"
-        class="max-w-52"
+        class="w-auto md:max-w-52"
       />
       <div class="flex flex-col gap-2">
         <p
