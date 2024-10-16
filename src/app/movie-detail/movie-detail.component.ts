@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
-import { MovieService } from '../services/movie.service';
-import { ReviewService } from '../services/review.service';
-import { AuthService } from '../services/auth.service';
-import { CreateReview, Review } from '../models/review';
-import { Movie } from '../models/movie';
+import { MovieService } from '../../services/movie.service';
+import { ReviewService } from '../../services/review.service';
+import { AuthService } from '../../services/auth.service';
+import { CreateReview, Review } from '../../models/review';
+import { Movie } from '../../models/movie';
 
 @Component({
   selector: 'app-movie-detail',

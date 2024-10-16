@@ -3,7 +3,7 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',

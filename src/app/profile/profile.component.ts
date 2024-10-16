@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
 

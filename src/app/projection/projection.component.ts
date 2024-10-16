@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 
-import { ProjectionService } from '../services/projection.service';
-import { Projection } from '../models/projection';
+import { ProjectionService } from '../../services/projection.service';
+import { Projection } from '../../models/projection';
 import { ProjectionCardComponent } from '../components/projection-card/projection-card.component';
 
 @Component({

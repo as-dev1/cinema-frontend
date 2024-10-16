@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
-import { Projection } from '../../models/projection';
-import { CartService } from '../../services/cart.service';
-import { AuthService } from '../../services/auth.service';
+import { Projection } from '../../../models/projection';
+import { CartService } from '../../../services/cart.service';
+import { AuthService } from '../../../services/auth.service';
+import { formatDateAndTime } from '../../../lib/formatTime';
 
 @Component({
   selector: 'app-projection-card',
@@ -13,6 +14,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProjectionCardComponent {
   @Input() projection!: Projection;
+  formateDateAndTime = formatDateAndTime;
 
   constructor(
     private cartService: CartService,
@@ -33,10 +35,6 @@ export class ProjectionCardComponent {
     } else {
       this.router.navigateByUrl('/login');
     }
-  }
-
-  formatDate(date: Date) {
-    return new Date(date).toLocaleString();
   }
 
   shortDescription(description: string) {
