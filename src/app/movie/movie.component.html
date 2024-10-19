@@ -141,7 +141,18 @@
     </div>
   </div>
 
-  @if (filteredMovies.length > 0) {
+  @if (!isLoading && filteredMovies.length === 0) {
+  <div class="flex items-center justify-center min-h-60">
+    <p class="text-center text-xl">
+      There are no movies that matched your filters. 😞
+    </p>
+  </div>
+  } @if (isLoading) {
+  <div class="flex items-center justify-center min-h-screen">
+    <lucide-icon name="loader" class="animate-spin size-10"></lucide-icon>
+  </div>
+  }
+
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
   >
@@ -149,9 +160,4 @@
     <app-movie-card [movie]="movie" />
     }
   </div>
-  } @else {
-  <div class="min-h-screen flex justify-center items-center">
-    <lucide-icon name="loader" class="animate-spin size-10"></lucide-icon>
-  </div>
-  }
 </section>

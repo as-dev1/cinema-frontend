@@ -15,6 +15,7 @@ import { ProjectionCardComponent } from '../components/projection-card/projectio
 export class ProjectionComponent implements OnInit {
   projections: Projection[] = [];
   filteredProjections: Projection[] = [];
+  isLoading: boolean = false;
 
   nameInput: string = '';
   descriptionInput: string = '';
@@ -31,9 +32,16 @@ export class ProjectionComponent implements OnInit {
   }
 
   getProjections() {
-    this.projectionService.getAllProjections().subscribe((data) => {
-      this.projections = data;
-      this.filteredProjections = data;
+    this.isLoading = true;
+    this.projectionService.getAllProjections().subscribe({
+      next: (data) => {
+        this.projections = data;
+        this.filteredProjections = data;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+      },
     });
   }
 
@@ -63,6 +71,10 @@ export class ProjectionComponent implements OnInit {
         this.filterByDuration(projection.movie.duration) &&
         this.filterByPrice(projection.price)
     );
+
+    if (this.filteredProjections.length === 0) {
+      this.isLoading = false;
+    }
   }
 
   filterByDuration(duration: number): boolean {

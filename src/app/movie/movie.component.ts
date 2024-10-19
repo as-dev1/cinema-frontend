@@ -15,6 +15,7 @@ import { MovieCardComponent } from '../components/movie-card/movie-card.componen
 export class MovieComponent implements OnInit {
   movies: Movie[] = [];
   filteredMovies: Movie[] = [];
+  isLoading: boolean = false;
 
   nameInput: string = '';
   descriptionInput: string = '';
@@ -30,9 +31,16 @@ export class MovieComponent implements OnInit {
   }
 
   getMovies() {
-    this.movieService.getAllMovies().subscribe((data) => {
-      this.movies = data;
-      this.filteredMovies = data;
+    this.isLoading = true;
+    this.movieService.getAllMovies().subscribe({
+      next: (data) => {
+        this.movies = data;
+        this.filteredMovies = data;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+      },
     });
   }
 
@@ -57,6 +65,10 @@ export class MovieComponent implements OnInit {
           : true) &&
         this.filterByDuration(movie.duration)
     );
+
+    if (this.filteredMovies.length === 0) {
+      this.isLoading = false;
+    }
   }
 
   filterByDuration(duration: number): boolean {
