@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule } from 'lucide-angular';
+import { NgFor } from '@angular/common';
 
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie';
@@ -9,7 +9,7 @@ import { MovieCardComponent } from '../components/movie-card/movie-card.componen
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [FormsModule, MovieCardComponent, LucideAngularModule],
+  imports: [FormsModule, NgFor, MovieCardComponent],
   templateUrl: './movie.component.html',
 })
 export class MovieComponent implements OnInit {

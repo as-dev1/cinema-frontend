@@ -11,7 +11,6 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import {
   Heart,
-  Loader,
   LucideAngularModule,
   Mail,
   MapPinHouse,
@@ -35,7 +34,6 @@ export const appConfig: ApplicationConfig = {
         MapPinHouse,
         Heart,
         User,
-        Loader,
         House,
       })
     ),
